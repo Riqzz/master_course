@@ -486,11 +486,3 @@
   
   
 
-```mermaid
-graph LR
-  subgraph f [ ]
-  BEGIN(( begin)) -.-> END((e n d ))
-  end
-
-```
-
