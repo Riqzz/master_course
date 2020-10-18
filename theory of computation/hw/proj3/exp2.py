@@ -108,6 +108,9 @@ for pr in cfg:
         
 cfg = PairSet(tmpcfg)
 
+print('-'*30 + "Step 0 finish" + '-'*30)
+cfg.print_all()
+
 # step 1: add S0 -> S
 cfg.add(Pair('S0', ['S']))
 
