@@ -8,7 +8,7 @@ Design a Turing Machine $M$ to implement the Bubble Sort.
 
 **Design**
 
-* **Number field ( $\Sigma$ ) **
+* **Number field ( $\Sigma$ )**
 
   To simplify the problem, let the number field $\Sigma$ be a subset of $\{x|1\le x \le 9\}$, For example, $\Sigma = \{1,3,4,6,9\}$ (without order) , the elements can be **dynamically** selected. Therefore, the number of states and state transforming diagram are different when selecting different subset. But in order to express the complete cases, I use the **universal** set, and of course, it can be any subset.
 
