@@ -37,7 +37,7 @@ Design a Turing Machine $M$ to implement the Bubble Sort.
 
   * **Start with $q_0$**
 
-    ![png](img1.png)
+    ![png](imgs/img1.png)
 
     
 
@@ -45,27 +45,27 @@ Design a Turing Machine $M$ to implement the Bubble Sort.
 
   * **Fetch a value $X$**
 
-    ![png](img8.png)
+    ![png](imgs/img8.png)
 
     When the current state is $q_S$, if the next symbol is $\#$, it means the tape is sorted ( or an empty tape ), then the state transforms to $q_{accept}$. Otherwise, the next value must be a number, let it be $X$, so the machine can fetch this value and transform to corresponding state $q_X$.
 
   * **For each $q_X$ and $q_Y$，where $X$ and $Y$ are in $\Sigma$, and $X < Y$**
 
-    ![png](img2.png)
+    ![png](imgs/img2.png)
 
     When the current state is $q_X$, and the next symbol is $Y$, and $Y < X$, then the state just need to transform to $q_Y$. This process means $X$ and $Y$ are in order, we do not need any operation on the tape. So, just change the state and move the probing to next symbol.
 
   * **For each $q_Y$ and $q_X$，where $X$ and $Y$ are in $\Sigma$, and $Y > X$**
 
-    ![png](img3.png)
+    ![png](imgs/img3.png)
 
-    ![png](img4.png)
+    ![png](imgs/img4.png)
 
     Here, for unified symbols, I make $Y$ always larger than $X$.
 
     When the current state is $q_Y$, and the next symbol is $X$, and $Y > X$, so this case is just the opposite of the above. Here, we need a middle state to help swap the two value on the tape. An example of the process is like:
 
-    ![png](img9.png)
+    ![png](imgs/img9.png)
 
     This operation is similar to define a temporary variable `tmp`like:
 
@@ -82,15 +82,15 @@ Design a Turing Machine $M$ to implement the Bubble Sort.
 
     In bubble sort, when we move the largest value to the tail of the array, we never need to visit it in the next comparation, so we can design a special state $q_W$: 
 
-    ![png](img5.png)
+    ![png](imgs/img5.png)
 
-    ![png](img6.png)
+    ![png](imgs/img6.png)
 
     It also do a swap operation, but it swap the largest value at the tail and the sharp mark behind it, which means the back-most position of the tape. This operation complete with the help of $q_W$, similar with $q_{[X]}$. But the difference is whatever the next symbol is, $q_W$ will be always transform to state $q_L$.
 
   * **Return to start position**
 
-    ![png](img7.png)
+    ![png](imgs/img7.png)
 
     When the current state is $q_L$, the moving direction of the probing stays ***left***, until meet the start position' sharp mark $\#$. And if the probing pointer return to the left-most position, the state will transform to  $q_S$, which we have introduced above.
 
@@ -98,7 +98,7 @@ Design a Turing Machine $M$ to implement the Bubble Sort.
 
     When the current state become $q_S$ again, it means we  have finish the first round of bubble sort, and the result is that the largest value is at the back-most position with a sharp symbol before it. A example is:
 
-    ![png](img10.png)
+    ![png](imgs/img10.png)
 
     So, the end mark symbol moves forward at the end of each round. For more samples see configuration part.
 
@@ -117,25 +117,25 @@ Design a Turing Machine $M$ to implement the Bubble Sort.
 4. if all values are sorted,  $accept$; otherwise, $reject$. "
   
    
-  
+
 Then, giving the formal description of $M = (Q, \Sigma, \Gamma, \delta, q_0, q_{accept}, q_{reject})$:
-  
+
 $Q = \{q_0,q_S,q_W,q_L,q_1,q_{[1]},q_2,q_{[2]},q_3,q_{[3]},q_4,q_{[4]},q_5,q_{[5]},q_6,q_{[6]},q_7,q_{[7]},q_8,q_{[8]},q_9,q_{[9]},q_{accept},q_{reject}\}$,
-  
+
 $\Sigma = \{1,2,3,4,5,6,7,8,9\}$, means the input alphabet,
-  
+
 $\Gamma = \{1,2,3,4,5,6,7,8,9,\# \}$, means the tape alphabet,
-  
+
   $\delta$  has been described above, and the state transforming diagram is as following,
-  
+
   $q_0$ is the start state,
-  
+
   $q_{accept}$ is the accept state, and 
-  
+
   $q_{reject}$ is the reject state.
-  
-  ![png](img11.png)
-  
+
+  ![png](imgs/img11.png)
+
   It is really complex !!!
 
 **Result**
