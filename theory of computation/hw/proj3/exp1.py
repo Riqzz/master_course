@@ -30,7 +30,7 @@ class TuringMachine:
         self.table['0']['#'] = ['S', '#', R]
         for i in range(1, len(self.alphabet)):
             for j in range(1, len(self.alphabet)):
-                if self.alphabet[i] <= self.alphabet[j]:
+                if self.alphabet[i] < self.alphabet[j]:
                     x = self.alphabet[i]
                     y = self.alphabet[j]
                     self.table[x][y] = [y, y, R]
@@ -40,6 +40,10 @@ class TuringMachine:
         for i in range(1, len(self.alphabet)):
             x = self.alphabet[i]
             self.table[x]['#'] = ['W', x, L]
+        for i in range(1, len(self.alphabet)):
+            x = self.alphabet[i]
+            self.table[x][x] = [x, x, R]
+            pass
         for i in range(0, len(self.alphabet) ):
             x = self.alphabet[i]
             self.table['W'][x] = ['L', '#', L]
@@ -75,7 +79,7 @@ def configuration(pos, state, tape):
 
 
 
-input_str = "9 8 7 6 5 4 3 2 1"
+input_str =  "9 8 7 6 5 4 3 3 2 1"
 
 
 
@@ -102,3 +106,19 @@ while stt.no != state_ac.no and stt.no != state_rj.no:
     stt = State(to)
     pos += shift
 configuration(pos, stt, tape)
+
+
+def direct(v):
+    if v == 1:
+        return 'R'
+    return 'L'
+def same(v1, v2):
+    if v1 == v2:
+        return ''
+    return v2+', '
+for key, value in tm.table.items():
+    trans = value
+    for k, v in trans.items():
+        # print(k, v)
+        # print("{}--{}-->{}".format(key, "({} -> {}{})".format(k, same(k, v[1]), direct(v[2]) ), v[0] ))
+        print('{} -> {} [ label = "{}" ];'.format(key, v[0], "{} -> {}{}".format(k, same(k, v[1]), direct(v[2]) )))
