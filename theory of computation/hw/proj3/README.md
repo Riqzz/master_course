@@ -136,7 +136,7 @@ $\Gamma = \{1,2,3,4,5,6,7,8,9,\# \}$, means the tape alphabet,
 
   ![png](imgs/img11.png)
 
-  It is really complex !!! A topological structure is like this(ignore reject state):
+  It is really chaos !!! A clear topological structure is like this(ignore reject state):
 
 ![png](imgs/img12.png)
 
