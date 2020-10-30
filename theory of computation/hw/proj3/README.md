@@ -543,8 +543,7 @@ Write a program to convert Context-Free Grammar (GFC) into corresponding Chomsky
   A -> C
   B -> aC
   C -> ε
-  
-  >>> result:
+  -------result--------
   A -> ε
   B -> a
   ```
@@ -561,6 +560,9 @@ Write a program to convert Context-Free Grammar (GFC) into corresponding Chomsky
   In order to adapt all case, when removing $\epsilon$, I make it like:
 
   ```
+  A -> BCBCaBB
+  B -> ε
+  --------result--------
   A -> εCBCaBB
   A -> BCεCaBB
   A -> BCBCaεB
