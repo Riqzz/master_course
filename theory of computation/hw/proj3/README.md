@@ -112,11 +112,12 @@ Design a Turing Machine $M$ to implement the Bubble Sort.
   
   2. scan the input from the left to the right, if the current value is smaller than the last value, then swap the two values;
   
-3. if probing meet the tail of the input, it means the largest value is sorted, so make a mark to avoid redundant scanning, and then return to the begin position;
+  3. if probing meet the tail of the input, it means the largest value is sorted, so make a mark to avoid redundant scanning, and then return to the begin position;
   
-4. if all values are sorted,  $accept$; otherwise, $reject$. "
+  4. if all values are sorted,  $accept$; otherwise, $reject$. "
   
-   
+  
+  
 
 Then, giving the formal description of $M = (Q, \Sigma, \Gamma, \delta, q_0, q_{accept}, q_{reject})$:
 
@@ -126,13 +127,13 @@ $\Sigma = \{1,2,3,4,5,6,7,8,9\}$, means the input alphabet,
 
 $\Gamma = \{1,2,3,4,5,6,7,8,9,\# \}$, means the tape alphabet,
 
-  $\delta$  has been described above, and the state transforming diagram is as following,
+$\delta$  has been described above, and the state transforming diagram is as following,
 
-  $q_0$ is the start state,
+$q_0$ is the start state,
 
-  $q_{accept}$ is the accept state, and 
+$q_{accept}$ is the accept state, and 
 
-  $q_{reject}$ is the reject state.
+$q_{reject}$ is the reject state.
 
   ![png](imgs/img11.png)
 
