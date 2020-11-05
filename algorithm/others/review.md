@@ -148,5 +148,52 @@ x = [Complex(i, 0) for i in range(4)]
 y = fft(x)
 ```
 
+求解矩阵：
 
+$$
+\left[ \begin{matrix}
+y_0\\
+y_1\\
+y_2\\
+y_3\\
+\vdots\\
+y_{n-1}
+\end{matrix} \right ]
+=
+\left[ \begin{matrix}
+1 & 1   & 1   & 1   & \cdots & 1 \\
+1 & w_n & w_n^2 & w_n^3 & \cdots & w_n^{n-1}\\
+1 & w_n^2 & w_n^4 & w_n^6 & \cdots & w_n^{2(n-1)}\\
+1 & w_n^3 & w_n^6 & w_n^9 & \cdots & w_n^{3(n-1)}\\
+\vdots & \vdots &\vdots &\vdots& \ddots &\vdots\\
+1 & w_n^{n-1} & w_n^{2(n-1)} & w_n^{3(n-1)} & \cdots & w_n^{(n-1)(n-1)}\\
+\end{matrix} \right ]
+\left[ \begin{matrix}
+a_0\\
+a_1\\
+a_2\\
+a_3\\
+\vdots\\
+a_{n-1}
+\end{matrix} \right ]
+,w_n = cos(2\pi/n) + i\cdot sin(2\pi/n)
+$$
+
+$F_1 = [1]$
+
+$F_2
+=
+\left[ \begin{matrix}
+1 & 1 \\
+1 & -1 \\
+\end{matrix} \right ]$
+
+$F_4
+=
+\left[ \begin{matrix}
+1 & 1 & 1  & 1 \\
+1 & i & -1 & -i\\
+1 & -1 & 1 & -1\\
+1 & -i & -1 & i\\
+\end{matrix} \right ]$
 
