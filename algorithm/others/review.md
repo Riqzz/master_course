@@ -20,7 +20,7 @@ $$
 $$
 \sum\limits^n_{i=1}c_i \le \sum\limits^{\lfloor lgn \rfloor}_{j=0}2^j < n+2n=3n
 $$
-![image-20201104001121803](C:\Users\lenovo\AppData\Roaming\Typora\typora-user-images\image-20201104001121803.png)
+![png](./review/image-20201104001121803.png)
 
 **核算法**：
 
@@ -34,7 +34,7 @@ $$
 
 例2：
 
-![image-20201104001231292](C:\Users\lenovo\AppData\Roaming\Typora\typora-user-images\image-20201104001231292.png)
+![png](./review/image-20201104001231292.png)
 
 **势能法**：
 
