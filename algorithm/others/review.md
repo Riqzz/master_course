@@ -46,13 +46,15 @@ $$
 
 **势能法**：
 
-与整个操作序列相关的，定义 $D_i$ 为对数据结构 $D_{i-1}$ 做第i次操作后的结果，即记录总的存款额。对比记账法，记账法为记录每一次流水，势能则只记录总的存款额。
-
-$\Phi$ 
-
-例2：
+与整个操作序列相关的，定义 $D_i$ 为对数据结构 $D_{i-1}$ 做第i次操作后的结果，即记录总的存款额。对比记账法，记账法为记录每一次流水，势能则只记录总的存款额。第 $i$ 个操作的摊还代价 $\hat{c}_i$ 用势函数 $\Phi$  定义为：$\hat{c}_i = c_i + \Phi(D_i) - \Phi(D_{i-1})$
 
 
+
+例2：$\Phi(D_i) = 2i - 2^{\lceil lgn \rceil}$ ，$\Phi(D_0)=0$
+
+![png](./review/0.png)
+
+![png](./review/1.png)
 
 ***难点在于定义势能函数***
 
@@ -226,7 +228,12 @@ $F_4
 **贪心性质：**
 
 * 贪心选择性质（greedy-choice property）
+
+  A globally optimal solution can be arrived at by making a locally optimal (greedy) choice.
+
 * 最优子结构（optimal substructure）
+
+  an optimal solution to the problem contains within its  optimal solutions to subproblems.
 
 **例1：活动选择问题**
 
@@ -234,7 +241,7 @@ $F_4
 
   证明：设 $A_k$ 是一个最大兼容活动子集，$a_j$ 是结束时间最早的活动。若 $a_m = a_j$，则 $a_m \in A_k$，显然成立；否则，令 $A'_k=(A_k-\{a_j\})\cup\{a_m\}$，由于 $f_m \le f_j$，所以 $A'_k$ 中的元素也是不相交的，又 $|A'_k|=|A_k|$ ，故 $A'_k$ 也是一个最大兼容活动子集。
 
-* 最早结束的活动，最晚开始的活动
+* 最早结束的活动 earliest finish，最晚开始的活动 latest start
 
 **例2：分数背包问题**
 
@@ -288,7 +295,7 @@ DP性质：
 
 * 重叠子问题（overlapping subproblems）
 
-  When a recursive algorithm revisits the same problem over and over again, we say that the optimization problem has Overlapping subproblems
+  When a recursive algorithm revisits the same problem over and over again, we say that the optimization problem has overlapping subproblems
 
 例1：矩阵链乘法
 
@@ -300,7 +307,7 @@ DP性质：
 
 例5：最小编辑距离
 
-例6：最大单位阵
+*例6：最大单位阵、最大正方形*
 
 
 
