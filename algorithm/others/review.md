@@ -1,4 +1,4 @@
-#### 、10 摊还分析
+#### 10 摊还分析
 
 **聚合分析**：一个 $n$ 个操作的序列最坏情况下花费的总时间是 $T(n)$ ，那么每个操作的摊还代价为 $T(n)/n$
 
@@ -45,6 +45,8 @@ $$
 
 
 **势能法**：
+
+与整个操作序列相关的，定义 $D_i$ 为对数据结构 $D_{i-1}$ 做第i次操作后的结果，即记录总的存款额。对比记账法，记账法为记录每一次流水，势能则只记录总的存款额。
 
 $\Phi$ 
 
@@ -281,7 +283,12 @@ $F_4
 DP性质：
 
 * 最优子结构（optimal substructure）
+
+  A problem exhibits Optimal substructure if an optimal solution to the problem is contained within its optimal solutions to subproblems.
+
 * 重叠子问题（overlapping subproblems）
+
+  When a recursive algorithm revisits the same problem over and over again, we say that the optimization problem has Overlapping subproblems
 
 例1：矩阵链乘法
 
@@ -416,11 +423,19 @@ $h \ge lg(n!) = nlgn-nlge = \Omega(nlgn)$
 
 
 
+![png](/review/sort.png)
+
+基数排序的稳定度应该取决于辅助排序算法
+
+
+
 
 
 #### 4 哈希
 
 **链接法**（考查哈希过程和证明）
+
+*（链表中新来的放在前面）*
 
 定义一个能存放 $n$ 个元素，具有 $m$ 个槽位的散列表 $T$ ，定义装载因子 $\alpha = n/m$ ，即一个链的平均储存元素数。
 
@@ -532,12 +547,16 @@ $$
 * 每个结点或是红色， 或是黑色（Every node is either red or black）
 * 根是黑色（The root is always black）
 * 叶是黑色（Every leaf (NULL pointer) is black）
-* 若一个节点是红色，则它的两个子节点只能是黑色（If a node is red, both children are black）
+* 若一个节点是红色，则它的两个子节点只能是黑色（If a node is red, both its children are black）
 * 对每个节点，从该节点到其所有后代叶节点的简单路径上，均包含相同数目的黑节点（Every path from node to descendent leaf contains  the same number of black nodes）
 
 黑高：从某个节点出发（不含该节点）达到一个叶节点（包含该叶节点）的任一简单路径上包含的黑色节点的数目是一样的，这个数目称为 *黑高* $bh(x)$；树的黑高为根节点的黑高
 
 *区分树高 h 和黑高 bh，由性质4可知 bh 大于等于 h/2*
+
+
+
+一个黑高为 $k$ 的红黑树，最多有 $2^{2k}-1$ 个内节点，最少有 $2^k-1$ 个内节点
 
 
 
@@ -550,10 +569,6 @@ $$
 ==证明==：假设树高为 $h$，根据性质4*（若一个节点是红色，则它的两个子节点只能是黑色）*，一条简单路径上至少有一半的节点是黑色，因此黑高至少为 $h/2$。因此，由引理知，若内部节点为 $n$，则 $n\ge2^{h/2}-1$ ，整理取对数得到 $lg(n+1) \ge h/2$ ，或者 $h \le 2lg(n+1)$。过程如图：
 
 ![png](./review/bh.png)
-
-
-
-==证明==：先证明
 
 
 
@@ -686,7 +701,11 @@ rank(T, x):
 
 属性 $max$ 子树（包含子树的根节点）中最大端点，$x.max=MAX(x.int.high,x.left.max,x.right.max)$
 
+
+
 构造：中序遍历按左端点大小顺序排列，即 $x.int.left$ 作为 $key$
+
+（考过从 0 构造一棵红黑区间树，插入）
 
 
 
@@ -738,6 +757,10 @@ search(T, i):
 
 当 $t=2$ 时，称为 2-3-4 树
 
+*2-3-4树与红黑树的等价性：*
+
+![png](./review/eq.png)
+
 
 
 定理：若 $n\ge1$，则对任意一棵包含 n 个关键字，高度为 h ，最小度数 t \ge 2 的 B 树，有 $h \le log_t\frac{n+1}{2}$ 
@@ -765,7 +788,127 @@ $h = O(log_tn)$
     - 如果 k 处的“右子树” w 至少包含 t 个关键字，则从 w 中找到 k 的后继 k' （子树中最靠左的），交换 k 和 k'，删掉 k
     - 如果 k 处的两个“子树”均只有 t-1 个关键字，则合并 k 和两个“子树”中的关键字以及两个指针，共得到含 2t-1 个关键字的新节点，删掉 k
 
+
+
+
+
 #### 9 跳表
+
+$n$ 个元素，$k$ 个有序链表的查询时间复杂度为 $k\cdot\sqrt[k]{n}$ ，$k=lgn$ 的话，复杂度为 $2lgn$
+
+
+
+查找：
+
+```c++
+p=top
+While(1){
+    while (p->next->key < x ) p=p->next;
+    If (p->down == NULL ) return p->next
+    p=p->down ;
+}
+```
+
+定理：有很大概率，跳表每次查询的时间花费为 $O(lgn)$
+
+定理：有很大概率，$n$ 个元素的跳表有 $O(lgn)$ 层
+
+
+
+
+
+插入：随机抛硬币来决定要不要在上层构建节点
+
+```c++
+int insert(val x){
+ 
+    int i;
+    int j = n; //n是当前表所拥有的level数
+ 
+    cell *p[k]; //指针数组，用来保存每一层要插入元素的前驱
+ 
+    cell *p1;
+    p1 = top->next;
+ 
+    while(p1){
+        while(p1->next->val < x) p1=p1->next;
+        if(j <= k){
+            p[j-1] = p1; //保存每一层的指针
+            p1 = p1->down; //指向下一层
+            j--;
+        }
+    }
+ 
+    //下面的代码是将x插入到各层
+    for (i = 0; i<k; i++){
+        if(p[i]==NULL){//k>n的情况，需要创建一个层
+            //创建层的第一个元素，并将top指向它
+            cell *elementhead = (cell *) malloc(sizeof(cell));
+            element->val = -1;
+            element->down = top;
+            top = elementhead; 
+ 
+            //创建最后一个元素
+            cell *elementtail = (cell *) malloc(sizeof(cell));
+            elementtail->val = 1;
+            elementtail->next = elementtail->down = NULL;
+ 
+            //在该层中创建并插入x
+            cell *element = (cell *) malloc(sizeof(cell));
+            element->val = x;
+            elementhead->next = element;
+            element->next = elementtail;
+            element->down = p[i-1]->next;
+        }
+ 
+        //正常插入一个元素
+        cell *element = (cell *) malloc(sizeof(cell));
+        element->val = x;
+        element->next = p[i]->next;
+        element->down = (i=0?NULL:(p[i-1]->next));
+        p[i]->next = element;
+    }
+ 
+    return 0;
+}
+```
+
+
+
+删除：就把每层的这个点删掉，如果该层仅存在一个点了，就降层
+
+```c++
+int delete(val x){
+ 
+    int i = n; //n表示当前总层数
+    cell *p, *p1;
+    p = top;
+ 
+    while(n>0){
+        while(p->next->val < x) p=p->next;
+        if(p->next->val == x){//假如当前层存在节点x,删除
+            if(p = top && p->next->next->val == INT_MAX){//该层只存在一个节点
+                top = p->down;
+                free(p->next->next);
+                free(p->next);
+                free(p);
+                p = top;
+            }
+            else{
+                p1 = p->next;
+                p->next = p1->next;
+                free(p1);
+            }
+        }
+        p = p->down;
+        n--;
+    }
+}
+```
+
+（[代码](https://blog.csdn.net/a2796749/article/details/48084717)仅参考）
+
+
 
 
 
