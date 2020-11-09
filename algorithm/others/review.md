@@ -18,7 +18,7 @@ i& i-1等于2的幂\\
 $$
 因此，n 次总代价为：
 $$
-\sum\limits^n_{i=1}c_i \le \sum\limits^{\lfloor lgn \rfloor}_{j=0}2^j < n+2n=3n
+\sum\limits^n_{i=1}c_i \le n +\sum\limits^{\lfloor lgn \rfloor}_{j=0}2^j < n+2n=3n
 $$
 ![png](./review/image-20201104001121803.png)
 
@@ -34,9 +34,9 @@ $$
 $$
 \sum\limits^n_{i=1}\hat{c}_i \ge \sum\limits^n_{i=1}c_i
 $$
-例1：
+例1：花费 2：置位、以后用来复位
 
-例2：
+例2：花费 3 ：插入 x 、扩张时移动 x 、扩张时移动 已经移动过的 y
 
 ![png](./review/image-20201104001231292.png)
 
