@@ -283,3 +283,9 @@
 **定理7.8**：设 $t(n)$ 是一个函数，$t(n) \ge n$，则每一个 $t(n)$ 时间的**多带图灵机**都和某一个 $O(t^2(n))$ 的单带图灵机等价
 
 **定理7.10**：设 $t(n)$ 是一个函数，$t(n) \ge n$，则每一个 $t(n)$ 时间的**非确定型单带图灵机**都和某一个 $2^{O(t(n))}$ 的确定型单带图灵机等价
+
+
+
+**P**
+
+P is the class of languages that are decidable in polynomial time on a deterministic single-tape Turing machine.
