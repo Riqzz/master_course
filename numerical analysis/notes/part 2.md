@@ -53,6 +53,7 @@ $x^{(k+1)} = Bx^{(k)} + f$
 * $||A||_{\infty} = \max\limits_{1\le i \le n} \sum\limits_{j=1}^n |a_{ij}|$  （最大的行绝对值之和）
 * $||A||_1 = \max\limits_{1\le j \le n} \sum\limits_{i=1}^n |a_{ij}|$  （最大的列绝对值之和）
 * $||A||_2 = \sqrt{\lambda_{\max}(A^TA)}$
+* $||A||_F = ( \sum\limits_{j=1}^n a_{ij}^2 )^{\frac{1}{2}}$  
 
 **2.3 条件数**
 
@@ -61,3 +62,8 @@ $x^{(k+1)} = Bx^{(k)} + f$
 定义：设 A 是非奇异矩阵，称数 $cond(A)_v = ||A^{-1}||_v||A||_v$ 为矩阵 A 的条件数。
 
 当条件数 $cond(A) \gg 1$ 时，线性方程组是“病态”的
+
+
+
+**2.4 收敛性**
+
